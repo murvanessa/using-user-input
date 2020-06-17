@@ -12,19 +12,19 @@
      * @param {any} valueB
      * @returns {string}
      */
-    function compareValues(valueA, valueB) {
+     function compareValues(valueA, valueB) {
       // no need to check the argument types, they can be anything!
 
       let comparison;
-      if (typeof valueA === typeof valueB) {
-        comparison += 'different types';
-      } if (valueA === valueB) {
-        comparison += 'same type, different values';
+      if (typeof valueA !== typeof valueB) {
+        comparison = 'different types';
+      } else if (valueA !== valueB) {
+        comparison = 'same type, different values';
       } else {
-        comparison += 'strictly equal'
+        comparison = 'strictly equal'
       }
 
-      if (typeof comparison !== 'boolean') { throw new TypeError() };
+      if (typeof comparison !== 'string') { throw new TypeError() };
       return comparison;
     }
 
