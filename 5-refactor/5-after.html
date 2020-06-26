@@ -5,17 +5,81 @@
   <meta charset="utf8">
   <title>after refactor: 5</title>
 
-  <style> </style>
+  <style>
+    .centered {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+  </style>
 
-  <script id='logic'> </script>
+  <script id='logic'>
+    function encodeURIComponent(stringToEncode) {
+      if (typeof stringToEncode !== 'string') { throw new TypeError(); }
+      
+      let stringencoded = '';
+      if (typeof stringencoded !== 'string') { throw new TypeError(); }
+      return stringencoded;
+    }
 
-  <script id='tests'></script>
+  </script>
 
-  <script id='handler'></script>
+  <script id='tests'>
+    console.log('testing: how a string will be encoded ');
+    debugger;
+
+    const _1_expect = 'first';
+    const _1_actual = whichIsGreater(1, 0);
+    console.assert(_1_actual === _1_expect, 'Test 1');
+
+    const _2_expect = 'second';
+    const _2_actual = whichIsGreater(-1, 0);
+    console.assert(_2_actual === _2_expect, 'Test 2');
+
+    const _3_expect = 'first';
+    const _3_actual = whichIsGreater(Infinity, -Infinity);
+    console.assert(_3_actual === _3_expect, 'Test 3');
+
+    const _4_expect = 'neither';
+    const _4_actual = whichIsGreater(NaN, 0);
+    console.assert(_4_actual === _4_expect, 'Test 4');
+
+    const _5_expect = 'neither';
+    const _5_actual = whichIsGreater(1, 1);
+    console.assert(_5_actual === _5_expect, 'Test 5');
+  </script>
+
+  <script id='handler'>
+    function encodeURIComponentHandler() {
+      debugger;
+
+      const input1 = prompt('enter a string to encode');
+      const stringToEncode = String(input1);
+
+      const input2 = prompt('how do you think it will be encoded?');
+      const  guess = String(input2);
+
+      const encoded = encodeURIComponent(stringToEncode);
+      const wasCorrect = encoded === guess;
+      const message = wasCorrect ? 'correct!' : 'nope :(';
+
+      alert(message);
+
+      console.log('-- interaction log --');
+      console.log('input1:', typeof input1, '\n', input1);
+      console.log('stringToEncode:', typeof stringToEncode, '\n', stringToEncode);
+      console.log('input2:', typeof input2, '\n', input2);
+      console.log('guess:', typeof  guess, '\n',  guess);
+      console.log('message:', typeof message, '\n', message);
+    }
+  </script>
 </head>
 
 <body>
-  <section id='user-interface' class='centered'></section>
+  <section id='user-interface' class='centered'>
+    <button onclick='encodeURIComponentHandler()'>predict how a string will be encoded for URIs</button>
+  </section>
 </body>
 
 </html>

@@ -5,17 +5,75 @@
   <meta charset="utf8">
   <title>after refactor: 2</title>
 
-  <style> </style>
+  <style> 
+    .centered {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+  </style>
 
-  <script id='logic'> </script>
+  <script id='logic'> 
+    function charactertoremove(characterToRemove, stringToRemoveItFrom){
+      if (typeof characterToRemove !== 'string') { throw new TypeError(); }
+      if (typeof stringToRemoveItFrom !== 'string') { throw new TypeError(); }
 
-  <script id='tests'></script>
+      let stringWithout = '';
+      for (let i = 0; i < stringToRemoveItFrom.length; i++) {
+        const nextCharacter = stringToRemoveItFrom[i];
+        if (nextCharacter !== characterToRemove) {
+          stringWithout += nextCharacter;
+        }
+      }
 
-  <script id='handler'></script>
+      if (typeof stringWithout !== 'string') { throw new TypeError(); }
+      return stringWithout;
+    }
+  </script>
+
+  <script id='tests'>
+    console.log('testing: charactertoremove ');
+    debugger;
+
+    const _1_expect = 'rinne';
+    const _1_actual = charactertoremove(Co, Corinne);
+    console.assert(_1_actual === _1_expect, 'Test 1');
+
+    const _2_expect = 'seanny';
+    const _2_actual = whichIsGreater(tf, stefanny);
+    console.assert(_2_actual === _2_expect, 'Test 2');
+
+  </script>
+
+  <script id='handler'>
+    function charactertoremoveHandler() {
+      debugger;
+
+      const input1 = prompt('character to remove');
+      const char1 = String(input1);
+
+      const input2 = prompt('string to remove the character in');
+      const string2 = String(input2);
+
+      const toremove = charactertoremove(char1, string2);
+
+      alert(toremove);
+
+      console.log('-- interaction log --');
+      console.log('input1:', typeof input1, '\n', input1);
+      console.log('char1:', typeof char1, '\n', char1);
+      console.log('input2:', typeof input2, '\n', input2);
+      console.log('string2:', typeof string2, '\n', string2);
+      console.log('toremove:', typeof toremove, '\n', toremove);
+    }
+  </script>
 </head>
 
 <body>
-  <section id='user-interface' class='centered'></section>
+  <section id='user-interface' class='centered'>
+    <button onclick='charactertoremoveHandler()'>which character do you want to remove?</button>
+  </section>
 </body>
 
 </html>
